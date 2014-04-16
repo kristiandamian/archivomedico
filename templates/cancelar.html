@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{%block datos %}
+<body onload="inicializa()">
+
+<link href="/media/cs/pay.css" rel="stylesheet" type="text/css" />
+
+<br><br><br><br><br><br>
+<div id="texto">
+<h1>
+{% if mensaje %}
+	{{mensaje}}
+{% else %}
+La operaci&oacute;n ha sido cancelada
+{% endif %}
+</h1>
+</div>
+
+<script type="text/js/javascript" src="../media/jquery-1.3.2.js"></script>
+<script type="text/javascript">
+function inicializa()
+ {
+
+	$("a").removeClass("active");
+	$("#subscribirse").addClass("active"); 
+}
+ </script>
+</body>
+ {% endblock %}

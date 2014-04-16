@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="2a90ffe2-cc37-4f18-93de-4476d1d12a76" kpf_version="4" name="archivomedico.kpf">
+<preference-set idref="2a90ffe2-cc37-4f18-93de-4476d1d12a76">
+  <boolean id="import_live">1</boolean>
+</preference-set>
+</project>

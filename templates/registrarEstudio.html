@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{%block datos %}
+<head>  
+  <link type="text/css" href="media/css/consulta.css" rel="stylesheet" />
+  <link type="text/css" href="media/css/registrarEstudio.css" rel="stylesheet" />
+  <link type="text/css" href="media/cupertino/ui.all.css" rel="stylesheet" />  
+</head>
+    
+    <div id="busquedaPaciente"><p>Seleccione el nombre del paciente para obtener sus diagnosticos previos</p>
+        <p><label >Nombre</label>
+		<input id="nombre" style="width:120;"></input>
+        <label>Paterno</label>
+		<input id="paterno" style="width:120;"></input>
+        <label>Materno</label>
+		<input id="materno" style="width:120;"></input>		</p>
+		<Button id="buscar" class="buscar" onclick="buscoNombre()" >Buscar</Button>
+		<br><br>
+
+<div id="dialogoEstudio" title="Captura de Estudios">
+  <div id="tabsEstudios">
+      <ul>
+            <li><a href="#captura"><span>Captura de estudios</span></a></li>
+            <li><a href="#carga"><span>Carga de estudios</span></a></li>
+      </ul>
+	    <div id="captura">
+	      <table>
+		  <tr>
+			<td colspan=1>Nombre:</td>			
+			<td colspan=5><input id="nombreEstudio" style="width:440px"></input></td>
+		  </tr>
+		<tr>
+		  <td>Parametro:</td>
+		  <td><input id="parametro"  style="width:80;"></td>
+		  <td>Resultado:</td>
+		  <td><input id="resultado"  style="width:80;"></td>
+		  <td>L&iacute;mite de referencia:</td>
+		  <td><input id="referencia"  style="width:80;"></td>
+		</tr>
+		<tr>
+		  <td colspan=6>
+		    <div style='text-align:right'><button id="agregarEstudio"  onclick="AgregoEstudio()">Agregar</button></div>
+		  </td>
+		</tr>
+	      </table>
+	    
+	      <SELECT multiple="multiple" id="datosEstudios" NAME="datosEstudios"  style="width:500; height:290">
+
+	      </SELECT>	     		
+	      <table>
+		<tr style="text-align:center" >
+		   
+			<td><Button class="widebuttons" id="GrabarEstudio" class="buscar">Grabar Estudio</Button></td>
+			<td><Button class="widebuttons" id="BorrarEstudio" onclick="BorroUno('#datosEstudios')" class="buscar">Borrar Estudio</Button></td>
+			<td><Button class="widebuttons" id="LimpiarEstudio" onclick="BorroTodos('#datosEstudios')" class="buscar">Limpiar Estudios</Button></td>
+		   
+		</tr>
+		</table>	      
+	    </div>
+  	    <div id="carga">
+                <h3>Upload a file to App Engine File Hangar</h3>
+        <form>
+                <div id="uploader">
+                </div>
+        </form>
+                
+            <!--form action="{{upload_url}}" method="POST" enctype="multipart/form-data">
+	      <table >
+		  <tr>
+			<td style="width:50px">Nombre:</td>			
+			<td ><input id="nombreEstudio" name="nombreEstudio" style="width:445px"></input></td>
+		  </tr>
+		  <tr>
+		    <td colspan=2>
+		      <INPUT TYPE=FILE NAME="file" id="SeleccionarFile" >
+		    </td>
+		  </tr>
+	      </table>
+	    <div style="text-align:left"-->
+	    <!--Button class="widebuttons" id="GrabarEstudioFile" class="buscar" onclick="PruebaAjax()">Grabar Estudio</Button-->  
+	    <!--/div>
+                <input type="submit" id="GrabarEstudioFile" name="submit" value="Grabar Estudio" class="widebuttons">
+                </form>
+	    </div-->
+  </div>  
+  </div>    
+    </div>
+
+<div id="dialogoNombre" title="Nombres de la busqueda">
+	
+	<SELECT id="Nombres" NAME="Nombres" class="tabla" SIZE=10>
+	<!--OPTION VALUE="Juan-Camaney-Ramos">Juan-Camaney-Ramos-12/80/1973</option>
+	<OPTION VALUE="Jose-Perez-Lopez">Jose-Perez-Lopez-12/80/1973</option>
+	<OPTION VALUE="Jorge-De la Rosa- Lopez">Jorge-De la Rosa- Lopez-12/80/1973</option>
+	<OPTION VALUE="Pedro-Perez-Lopez">Pedro-Perez-Lopez-12/80/1973</option>
+	<OPTION VALUE="Pedro-Lopez-Lopez">Pedro-Lopez-Lopez-12/80/1973</option-->
+	</SELECT>
+    <div align="right"><button class="botonWide" onclick="Seleccionar('nombre','paterno','materno')">Seleccionar</button></div>
+
+</div>
+
+<script type="text/javascript" src="media/js/jquery-1.3.2.js"></script>
+  <script type="text/javascript" src="media/js/ui.core.js"></script>
+  <script type="text/javascript" src="media/js/ui.tabs.js"></script>
+  <script type="text/javascript" src="media/js/ui.draggable.js"></script>
+  <script type="text/javascript" src="media/js/ui.resizable.js"></script>
+  <script type="text/javascript" src="media/js/ui.dialog.js"></script>
+  <script type="text/javascript" src="media/js/registrarEstudio.js"></script>
+  <script type="text/javascript" src="media/js/dialogonombre.js"></script>
+  
+  
+  <script type="text/javascript" src="media/plupload/gears_init.js"></script>
+  <script type="text/javascript" src="media/plupload/plupload.full.min.js"></script>
+  <script type="text/javascript" src="media/plupload/jquery.plupload.queue.min.js"></script>
+    <link type="text/css" href="media/plupload/css/plupload.queue.css" rel="stylesheet" />  
+ 
+
+<script type="text/javascript">
+    $(function() {
+      uploader = $("#uploader").pluploadQueue({
+        runtimes: 'html5,html4,gears,flash',
+        /*runtimes: 'flash,html5,gears,html4',*/
+        use_query_string: false,
+        multipart: true,
+        flash_swf_url: 'media/plupload/plupload.flash.swf',
+        
+      }).pluploadQueue();
+      uploader.bind('UploadFile', function(up, file) {
+        $.ajax({
+            url: '/generate_upload_url',
+            async: false,
+            success: function(data) {
+              up.settings.url = data;
+            },
+        });
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("#tabsEstudios").tabs();
+    DialogoNombre();
+  });
+ 
+ 
+  </script>
+{%endblock %}

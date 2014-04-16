@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{%block datos %}
+
+<head>  
+    <link type="text/css" href="media/css/consulta.css" rel="stylesheet" />
+    <link type="text/css" href="media/css/diagnosticos.css" rel="stylesheet" />  
+  <link type="text/css" href="media/cupertino/ui.all.css" rel="stylesheet" />  
+</head>
+
+<style type="text/css">
+.botonWide { margin:10px 10px 10px 10px;width:120px;} 
+.tabla { width:616px; }
+
+#dialogoNombre { font-size:180%; }
+</style>
+<div id="forma">
+    {%if dr%}
+    <div id="label"><p>Seleccione el nombre del paciente para obtener sus diagnosticos previos</p></div>
+        <p><label>Nombre</label>
+		<input id="nombre"></input>
+        <label>Paterno</label>
+		<input id="paterno"></input>
+        <label>Materno</label>
+		<input id="materno"></input>		</p>
+		<Button id="buscar" class="buscar" onclick="buscoNombre()">Buscar</Button>
+		<br><br><br>
+    {%endif%}
+
+{%if diagnosticos%}
+    <table id="diagnosticos" class="borde tabladiag">
+        <tr>
+            <th class="fecha">
+                Fecha
+            </th>
+            <th>
+                Diagnostico
+            </th>            
+        </tr>
+        {%for diag in diagnosticos%}
+        <tr>
+            <td class="fecha">{{diag.fecha}}
+            </td>
+            <td>{{diag.diagnostico}}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+{%else%}
+
+{%if not dr%}
+<h2>No cuenta con diagnosticos registrados</h2>
+{%endif%}
+{%endif%}
+</div>
+
+<div id="dialogoNombre" title="Nombres de la busqueda">
+	
+	<SELECT id="Nombres" NAME="Nombres" class="tabla" SIZE=10>
+	<!--OPTION VALUE="Juan-Camaney-Ramos">Juan-Camaney-Ramos-12/80/1973</option>
+	<OPTION VALUE="Jose-Perez-Lopez">Jose-Perez-Lopez-12/80/1973</option>
+	<OPTION VALUE="Jorge-De la Rosa- Lopez">Jorge-De la Rosa- Lopez-12/80/1973</option>
+	<OPTION VALUE="Pedro-Perez-Lopez">Pedro-Perez-Lopez-12/80/1973</option>
+	<OPTION VALUE="Pedro-Lopez-Lopez">Pedro-Lopez-Lopez-12/80/1973</option-->
+	</SELECT>
+    <div align="right"><button id="seleccionar" class="botonWide" onclick="Seleccionar('nombre','paterno','materno')">Seleccionar</button></div>
+
+</div>
+
+<script type="text/javascript" src="media/js/jquery-1.3.2.js"></script>
+  <script type="text/javascript" src="media/js/ui.core.js"></script>
+  <script type="text/javascript" src="media/js/ui.tabs.js"></script>
+  <script type="text/javascript" src="media/js/ui.draggable.js"></script>
+  <script type="text/javascript" src="media/js/ui.resizable.js"></script>
+  <script type="text/javascript" src="media/js/ui.dialog.js"></script>
+  
+  <script type="text/javascript" src="media/js/dialogonombre.js"></script>
+  
+      <script type="text/javascript">
+  $(document).ready(function(){    
+    DialogoNombre();
+  });
+  </script>
+{%endblock%}

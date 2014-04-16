@@ -1,0 +1,102 @@
+html
+{
+	background: #E7F4FF url(imgs/background.png) repeat-x;
+}
+Body
+{
+	text-align:center;
+	}
+#body{
+	width:900px;
+	height:750px;
+	top: 25px;	
+	position:relative;
+	background: white;	
+	margin:auto;
+
+}
+#principal
+{
+	font-family:Arial;
+	width:100%;
+	height:100%;
+}
+
+#logo
+{
+	position: absolute;
+	top: -26px;
+	left: 7%;
+	z-index: 102;	
+}
+#flash
+{
+	position:absolute;
+	top:57px;
+	right:50 px;	
+	left: 447px;
+}
+#datos
+{
+	position:static;	
+}
+#verticalmenu
+{
+	position:absolute;	
+	top: 100 px;
+	right: 10 px;
+	z-index:99;
+}
+
+/* Generado  via www.cssmenubuilder.com */
+#menu{		
+		position:absolute;
+		top:50px;
+		left:500px;		
+		width:400px;
+		z-index:99;
+	}
+.menu{  margin:0 auto; padding:0; height:30px; width:98%; display:block; 
+		background:url('imgs/topMenuImages.png') repeat-x;z-index:0; top:15px;}
+.menu li{padding:0; margin:0; list-style:none; display:inline;}
+.menu li a{float:right; padding-left:15px; display:block; color:rgb(0,0,0); 
+		text-decoration:none; font:12px Verdana, Arial, Helvetica, sans-serif; cursor:pointer; 
+		background:url('imgs/topMenuImages.png') 0px -30px no-repeat;font-weight:bold}
+.menu li a span{line-height:30px;  display:block; padding-right:15px; 
+		background:url('imgs/topMenuImages.png') 100% -30px  no-repeat;}
+.menu li a:hover{background-position:0px -60px; color:rgb(255,255,255);}
+.menu li a:hover span{background-position:100% -60px;}
+.menu li a.active, .menu li a.active:hover{line-height:30px; font:12px Verdana, Arial, Helvetica, sans-serif; 
+		background:url('imgs/topMenuImages.png') 0px -90px no-repeat; color:rgb(0,74,127);}
+		
+.menu li a.active span, .menu li a.active:hover span{background:url('imgs/topMenuImages.png') 100% -90px no-repeat;font-weight:bold}
+
+/* Generated via www.cssmenubuilder.com */
+
+.menuhorizontal{margin:0; padding:0; width:300px; list-style:none;background:rgb(255,255,255);
+				top:100px; left:15px;}
+.menuhorizontal li{position: relative; padding:0; margin:0 0 1px 0; height:40px; display:block; }
+.menuhorizontal li a{text-align:left;height:40px; padding:0px 25px; font:16px Verdana, Arial, Helvetica, sans-serif; 
+					color:rgb(255,255,255); display:block; background:url('imgs/verMenuImages.png') 0px 0px no-repeat; 
+					text-decoration:none;}
+.menuhorizontal li a:hover{background:url('imgs/verMenuImages.png') 0px -40px no-repeat; color:rgb(255,255,255);}
+.menuhorizontal li a.active, .menuhorizontal li a.active:hover{background:url('imgs/verMenuImages.png') 0px -80px no-repeat; 
+				color:rgb(255,255,255);}
+.menuhorizontal li a span{line-height:40px;}
+.menuhorizontal li ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+width: 220px;
+}
+.menuhorizontal li ul{ 
+position: absolute;
+width:220px;
+left: 0;
+top: 0;
+display: none;
+  /* for IE */
+ filter:alpha(opacity=90);
+  /* CSS3 standard */
+ opacity:0.9;
+}

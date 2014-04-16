@@ -1,0 +1,18 @@
+#busquedaPaciente
+{
+    width: 550;
+    height: 800;
+    top:80px;
+    left:330px;
+}
+#dialogoEstudio
+{
+    width: 550;
+    height: 800;    
+}
+#GrabarEstudioFile
+{
+    width:105px; color:#000; left:0px;
+    font-size:xx-small; padding:4px; background:#fff; 
+    border:1px solid #999;display:inline; margin-left:5px; 
+}

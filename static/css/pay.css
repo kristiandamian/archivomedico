@@ -1,0 +1,13 @@
+#texto
+{
+position:absolute;
+left:350px;
+width:570px;
+text-align:left;
+top:90px;
+}
+h1, h2, #respuesta { color:rgb(48,130,168)}
+a { 	font-family:Arial;font-size: 1em;text-decoration:none}
+
+label{ width: 200px; color: #000; font-size: 1.5em; margin:10px 10px 10px 10px; }
+input , select, button{ width: 200px; color: #000; font-size: 1.1em; padding: 4px; background: #fff; border: 1px solid #999; display: inline;  }

@@ -1,0 +1,105 @@
+label {display:block; width:150px; float:left; margin:2px 4px 6px 4px; text-align:right;}
+
+.error{
+  background-image:url("../../media/imgs/back-red.png");
+  background-repeat:repeat-x;  color: #FFF;
+}
+button { position:static ;top:210px; width:125px; color:#000; font-size:1.1em; padding:4px; 
+	background:#fff; border:1px solid #999;
+     display:inline; }
+
+button.forma{ position:static;}
+
+button:hover{background:#E7F4FF;}
+.boton { margin:10px 10px 10px 10px;} 
+.botonWide { margin:10px 10px 10px 10px;width:120px;} 
+#captura
+{
+	font:12px Verdana, Arial, Helvetica, sans-serif;
+	border-width:1px;
+	border-spacing:2px ;
+	border-style:solid;
+	border-color:gray;
+	border-collapse:separate;
+	background-color:white;
+}
+#cabecero
+{
+  top:200px;;
+  z-index:99;
+}
+#citas
+{
+	top:200px;
+}
+p{
+  margin-top:10px;
+  margin-bottom:10px;
+  /*padding-top:5px;
+  padding-top:5px;*/
+}
+#forma
+{
+	top:100px;
+	left:350px;
+}
+#wrap
+{
+	position:absolute;
+	top:-150px;
+	left:350px;
+}
+.tituloTabla{
+  padding-top:5px;  
+}
+#Doctores{
+  width:250px;
+  height:100px;
+  background-color:#FFFFFF;
+}
+#errorCaptura{
+  text-align:center;
+  width:450px; 
+  font-weight:bold;
+}
+.botonForma{
+  text-align:center;
+  width:450px;  
+}
+table
+{
+	/*position:absolute;*/
+	/*border-width:1px;
+	border-spacing:1px ;
+	border-style:solid;	*/
+	/*border-collapse:separate;*/
+	background-color:rgb(255, 250, 250);
+	width:500px;
+}
+table, td, tr{
+border:1px solid;
+border-color:#BDBDBD;
+}
+.borde
+{
+  border:1px solid;
+ border-color:#FFFDFD;
+}
+
+.tabla { width:616px; }
+
+th {
+    font-size: small;	
+
+}
+a img {border: none; }
+
+/*.hora
+{
+	width:100px;
+	text-align:center;
+}
+#dialog
+{
+	text-align:center;
+}*/

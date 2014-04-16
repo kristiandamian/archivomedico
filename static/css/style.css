@@ -1,0 +1,47 @@
+td {
+	text-align: left;
+	vertical-align: top;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6B6B6B;
+	line-height:13px;
+}
+a {
+	text-decoration: underline;
+	color:#3082A8;
+	font-size:11px;
+}
+
+.top_txt {color:#646464; font-size:10px}
+
+.gray {color:#6B6B6B; text-decoration:none}
+.blue {color:#3082A8}
+.green {color:#94BE23}
+
+
+
+a:hover{text-decoration:underline;}
+
+#under{text-decoration:underline;}
+
+#detalles
+{
+	top: 200px;
+}
+.tabladetalles
+{
+	left: 90px;
+}
+.titulo
+{
+	top:-10px;
+	text-align:center;
+	font-family:Tahoma;
+	font-size:13px;
+}
+#datos
+{
+	top:-150px;
+	left:350px;
+	text-align:left;
+}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{%block datos %}
+<head>
+	<link href="media/css/forma.css" rel="stylesheet" type="text/css" /> 
+</head>
+<style type="text/css">	
+	#errorCaptura { color:rgb(209,22,60); }
+</style>
+
+<!--form method="POST" action="/"-->
+		<div id="forma">			
+			{{FormaDoctor.as_p}}
+		<!--input type="submit" class="button" value="Enviar"/-->
+		<div id="errorCaptura">Faltan capturar algunos campos obligatorios</div><br>
+		
+		<button class="forma" onclick="ValidoDatos()">Grabar</button>
+		</div>
+<!--/form-->
+<script type="text/javascript" src="../media/js/jquery-1.3.2.js"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+	$("#errorCaptura").fadeOut("fast");
+	$("#id_correo").change( function() {			
+		ValidoCorreo();
+	});	
+  });
+   
+  function ValidoDatos()
+  {	
+	$("input").each(
+		function() {						
+			if($(this).attr("value").length==0)	
+			{	
+				$(this).addClass("error");
+			}
+			else
+			{
+				$(this).removeClass("error");
+			}
+	});
+	ValidoCorreo();
+	if($("input").hasClass("error"))
+	{		
+		$("#errorCaptura").text("Faltan capturar algunos campos obligatorios");
+		$("#errorCaptura").fadeIn("slow");
+	}
+	else
+	{
+		GraboDatos();
+	}
+  }
+
+function GraboDatos()
+{
+	var nombre=$("#id_nombre").attr("value");
+	nombre=nombre.toUpperCase();
+	var paterno=$("#id_paterno").attr("value");
+	paterno=paterno.toUpperCase();
+	var materno=$("#id_materno").attr("value");
+	materno=materno.toUpperCase();
+	var direccion=$("#id_direccion").attr("value");
+	var web=$("#id_web").attr("value");	
+	var correo=$("#id_correo").attr("value");
+	var especialidad=$("#id_especialidad").attr("value");
+	var telefono=$("#id_telefono").attr("value");
+	ajax={
+		type: "POST",
+		async:true,
+		//dataType:"json",
+		url:"/grabodr",
+		data:   "&nombre="+nombre+"&paterno="+paterno+
+			"&materno="+materno+"&direccion="+direccion+
+			"&web="+web+"&correo="+correo+
+			"&especialidad="+especialidad+"&telefono="+telefono,			
+		error: function ()
+				{
+					alert("Ocurrio un error con el registro de los datos del Dr. " + nombre+" "+paterno+" " +materno);
+					$("#buscando").html("");
+				},            
+		success:ReciboDatosPaciente
+	};       		
+	$.ajax(ajax);//llamo la funcion con JQUERY  	
+}
+function ReciboDatosPaciente(datos)
+{
+	$("#errorCaptura").text("Datos grabados con exito");
+	$("#errorCaptura").fadeIn("slow");	
+}
+  
+  function ValidoCorreo()
+  {
+	retorno=false;
+	var pattern = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var cadena=$("#id_correo").attr("value");		
+	if(cadena.search(pattern)>-1)		
+	{
+		$("#id_correo").removeClass("error");
+		retorno=true;
+	}
+	else
+		$("#id_correo").addClass("error");	
+	return retorno;
+  }
+</script>
+{%endblock %}

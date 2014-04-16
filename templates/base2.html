@@ -1,0 +1,51 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+	<head>
+		<title>Archivo-Medico.com</title>
+	<link rel="shortcut icon" href="../media/imgs/favicon.ico">
+	<link href="../media/css/base2.css" rel="stylesheet" type="text/css" /> 
+	<LINK HREF="../media/css/style.css" TYPE="text/css" REL="stylesheet"/>
+	<meta name="Keywords" content="Archivo,medico,caso,clinico,sistema,recetas,citas" />
+	<meta name="Description" content="Sistema de integral de gestion de informacion medica, siempre disponible desde cualquier computadora" />
+	<meta name="Robots" content="all" />
+	</head>
+	
+	<body>
+	<div id="menu">
+				<!--MENU-->		
+			<ul class="menu">  
+			  <li><a href="#" class="acerca"><span>Acerca de</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr.appspot.com/contacto" id="contacto"><span>Contacto</span></a></li>
+			  <li><a href="http://archivo-medico.appspot.com"  id="login"><span>Login</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr.appspot.com" class="active" class="inicio"><span>Inicio</span></a></li>
+			</ul>	
+			</div>
+	<div id="body">
+		<div id="principal">
+			<img src="../media/imgs/logo.png" id="logo">
+			</img>
+				
+			<ul class="menuhorizontal" id="verticalmenu">
+			  <li><a href="http://archivo-medico-mainhdr" class="active"><span>Beneficios</span></a></li>			  
+			  <li><a href="#"><span>Formas de pago</span></a></li>			  
+			  <li><a href="#"><span>xxx</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr/faq" id="faq"><span>Preguntas frecuentes</span></a></li>
+			  <li><a href="#" id="demo"><span>Demo</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr/subscribirse" id="subscribirse"><span>Subscribase</span></a></li>
+			</ul>		
+					
+			{% block datos %}{% endblock %}		
+			
+		</div><!--FIN PRINCIPAL-->
+		</div >
+	<!--Para redondear todo el principal-->
+	<script type="text/javascript" src="../media/js/shadedborder.js"></script> 
+
+	<script language="javascript" type="text/javascript"> 
+		
+		var myBorder = RUZEE.ShadedBorder.create({ corner:8, shadow:18,border:1 });
+		myBorder.render('body');
+    </script>
+	</body>
+</html>

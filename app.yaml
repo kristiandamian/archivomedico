@@ -1,0 +1,64 @@
+application: archivo-medicohrd
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: django
+  version: "1.5"
+  
+handlers:
+- url: /test.* 
+  script: gaeunit.app
+
+- url: /media
+  static_dir: static
+  
+- url: /
+  script: archivo-medico.app
+  secure: always
+
+- url: /validoPassword
+  script: archivo-medico.app
+  secure: always
+
+- url: /validoPasswordDr
+  script: archivo-medico.app
+  secure: always  
+  
+- url: /signmobile
+  script: archivo-medico.app
+  secure: always
+
+- url: /subscribirse
+  script: archivo-medico.app
+  secure: always
+
+- url: /pay
+  script: archivo-medico.app
+  secure: always
+
+- url: /finalizarpago/.*
+  script: archivo-medico.app
+  secure: always
+
+- url: /busquedausuario
+  script: archivo-medico.app
+  secure: always
+
+- url: /altausuario
+  script: archivo-medico.app
+  secure: always
+
+- url: /renovarsubscripcion
+  script: archivo-medico.app
+  secure: always
+
+- url: /grabopaciente
+  script: archivo-medico.app
+  secure: always 
+  
+- url: /.*
+  script: archivo-medico.app  
+

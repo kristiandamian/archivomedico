@@ -1,0 +1,23 @@
+#tabs
+{
+	position:absolute; left:330px; top:100px;
+	border-width:1px; width:550px; height: 630px;
+}
+/*table { width:100%;}*/
+.largeInput
+{
+	width:350px;
+}
+button {  width:105px; color:#000; left:0px;
+	font-size:1.1em; padding:4px; background:#fff; 
+	border:1px solid #999;display:inline; margin-left:5px; }
+.buscar {top:10px;}
+.input
+{
+	width:500px;
+	height:165px;
+}
+.widebuttons
+{
+	height:40px;width:150px;
+}

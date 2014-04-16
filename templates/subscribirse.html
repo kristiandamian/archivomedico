@@ -1,0 +1,80 @@
+{% extends "base2.html" %}
+{%block datos %}
+
+
+<link href="/media/css/pay.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="media/cupertino/ui.all.css" rel="stylesheet" />
+<br><br><br><br><br><br>
+<div id="texto">
+<p>Al subscribirse tendr&aacute; acceso al sistema de forma inmediata, pudiendo aprovechar los beneficios que le provee Archivo-Medico.com </p>
+<p>Para conocer m&aacute;s a detalle el funcionamiento del sistema, puede utilizar los recursos en l&iacute;nea disponibles.<br>
+En caso de necesitar factura, utilice la forma de <a href="./contacto">contacto</a> de esta p&aacute;gina.
+<br>
+<br>
+<table>
+<tr>
+<td>
+ <label>Subscripci&oacute;n</label>
+</td>
+<td>
+ <select name="cantidad" id="meses">
+	<option value="100">1 mes - $100 mx</option>
+	<option value="280">3 meses - $280 mx</option>
+	<option value="550">6 meses - $550 mx</option>
+	<option value="1100">1 A&ntilde;o - $1100 mx</option>
+ </select>
+ </td>
+ </tr>
+ <tr ><td colspan=2 >
+   <div align="right">
+     <button  value="Aceptar" onclick="MuestroDialogo()">Aceptar</button>
+     </div></td></tr>
+</table>
+ 
+ </div>
+ <div id="dialog" title="Confirmaci&oacute;n de Subscripci&oacute;n">
+	<form action="/pay" method="post" id="pay">
+		<div id="textodialogo"></div><br><br>
+		<INPUT TYPE=HIDDEN NAME="cantidad" id="mes" value="0">
+		
+		</input>
+		<input type="submit" value="Aceptar"></input>
+		
+	</form>
+</div>
+ 
+ <script type="text/javascript" src="media/js/jquery-1.3.2.js"></script>
+ <script type="text/javascript" src="media/js/ui.core.js"></script>
+ <script type="text/javascript" src="media/js/ui.draggable.js"></script>
+ <script type="text/javascript" src="media/js/ui.resizable.js"></script>
+ <script type="text/javascript" src="media/js/ui.dialog.js"></script>
+ <script type="text/javascript">
+
+function MuestroDialogo()
+{
+	var texto=$('#meses :selected').text();
+	cadena=texto.split("-");
+	$('#textodialogo').text("Ha seleccionado subscribirse a archivo m\u00e9dico por:" +cadena[0] +" con un costo de: "+cadena[1]);
+	var costo=cadena[1].replace(' mx','');
+	costo=costo.replace('$','');		
+	$('#mes').attr("value",costo);
+	$('#dialog').dialog('open');
+}
+  $(document).ready(function(){			
+  	$("a").removeClass("active");
+	$("#subscribirse").addClass("active"); 
+		Dialogo();					
+  });
+  	function Dialogo()
+	{
+	    $("#dialog").dialog( {width: 650, 
+			height: 360 , modal:true,
+			/*show: 'slide',*/ hide: 'slide',
+			resizable: false, autoOpen: false, 			
+			closeOnEscape:false,draggable:false			
+			}		
+		);
+	}
+ </script>
+
+ {% endblock %}

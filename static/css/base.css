@@ -1,0 +1,146 @@
+input
+{
+	text-transform: uppercase;
+}
+html
+{
+	background: #E7F4FF url(../imgs/background.png) repeat-x;
+}
+Body
+{
+	text-align:center;
+	}
+#body{
+	width:900px;
+	height:750px;
+	top: 25px;	
+	position:relative;
+	background: white;	
+	margin:auto;
+
+}
+#principal
+{
+	font-family:Arial;
+	width:100%;
+	height:100%;
+}
+
+#logo
+{
+	position: absolute;
+	top: -26px;
+	left: 7%;
+	z-index: 102;
+}
+#flash
+{
+	position:absolute;
+	top:57px;
+	right:50 px;	
+	left: 447px;
+}
+#datos
+{
+	position:static;	
+}
+#verticalmenu
+{
+	position:absolute;	
+	top: 100 px;
+	right: 10 px;
+	z-index:99;
+}
+
+/* Generado  via www.cssmenubuilder.com */
+#menu{		
+		position:absolute;		
+		top:50px;
+		left:500px;		
+		width:400px;
+		z-index:99;
+	}
+.menu{  margin:0 auto; padding:0; height:30px; width:98%; display:block; 
+		background:url('../imgs/topMenuImages.png') repeat-x;z-index:0; top:15px;}
+.menu li{padding:0; margin:0; list-style:none; display:inline;}
+.menu li a{float:right; padding-left:15px; display:block; color:rgb(0,0,0); 
+		text-decoration:none; font:12px Verdana, Arial, Helvetica, sans-serif; cursor:pointer; 
+		background:url('../imgs/topMenuImages.png') 0px -30px no-repeat;font-weight:bold}
+.menu li a span{line-height:30px;  display:block; padding-right:15px; 
+		background:url('../imgs/topMenuImages.png') 100% -30px  no-repeat;}
+.menu li a:hover{background-position:0px -60px; color:rgb(255,255,255);}
+.menu li a:hover span{background-position:100% -60px;}
+.menu li a.active, .menu li a.active:hover{line-height:30px; font:12px Verdana, Arial, Helvetica, sans-serif; 
+		background:url('../imgs/topMenuImages.png') 0px -90px no-repeat; color:rgb(0,74,127);}
+		
+.menu li a.active span, .menu li a.active:hover span{background:url('../imgs/topMenuImages.png') 100% -90px no-repeat;font-weight:bold}
+
+/* Generated via www.cssmenubuilder.com */
+
+.glossymenu, .glossymenu li ul{
+list-style-type: none;height:30px;
+margin: 0;
+padding: 0;
+width: 300px; 
+background:rgb(255,255,255);
+				top:100px; left:15px;
+}
+.glossymenu li a span{line-height:30px;}
+.glossymenu li{
+position: relative;
+}
+
+.glossymenu li a{ 
+background: white url('../imgs/verMenuImages.png') 0px 0px no-repeat;
+font: bold 12px Verdana, Helvetica, sans-serif;height:30px;
+color: white;
+display: block;
+width: auto;
+padding: 5px 0;
+padding-left: 10px;
+text-decoration: none;
+}
+
+.glossymenu li ul{ /*SUB MENU STYLE*/
+position: absolute;
+width: 190px; /*WIDTH OF SUB MENU ITEMS*/
+left: 0;
+top: 0;
+display: none;
+}
+
+.glossymenu li ul li{
+float: left;
+}
+
+.glossymenu li ul a{
+width: 180px; /*WIDTH OF SUB MENU ITEMS - 10px padding-left for A elements */
+}
+
+.glossymenu .arrowdiv{
+position: absolute;
+right: 2px;
+background: transparent url(../imgs/verMenuImages.png) no-repeat center right;
+}
+
+.glossymenu li a:visited, .glossymenu li a:active{
+color: white;
+}
+
+.glossymenu li a:hover{
+background:url('../imgs/verMenuImages.png') 0px -40px no-repeat; color:rgb(255,255,255);
+}
+.glossymenu li a.active, .glossymenu li a.active:hover{background:url('../imgs/verMenuImages.png') 0px -80px no-repeat; 
+				color:rgb(255,255,255);}
+				
+.glossymenu li ul{ 
+position: absolute;width:220px;left: 0;top: 0;display: none;
+  /* for IE */
+ filter:alpha(opacity=90);
+  /* CSS3 standard */
+ opacity:0.9;
+}
+/* Holly Hack for IE \*/
+* html .glossymenu li { float: left; height: 1%; }
+* html .glossymenu li a { height: 1%; }
+/* End */

@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{%block datos %}
+<head>
+	<link type="text/css" href="media/css/forma.css" rel="stylesheet" />
+	<link type="text/css" href="media/cupertino/ui.all.css" rel="stylesheet" />	
+	<link href="media/css/ui.datepicker.css" rel="stylesheet" type="text/css" />
+</head>
+<style type="text/css">	
+#errorCaptura { color:rgb(209,22,60); }
+</style>
+	<div id="wrap">		
+		<table  valign="middle"  class="borde" id="cabecero">
+			<tr>
+			<td >
+			<select id="dr" style="width:300px" onchange="RefrescoCitas()">
+				{%for doctor in doctores%}
+					<option  value="{{doctor.usuario.usuario}}"  >Dr. {{doctor.nombre}} {{doctor.paterno}} {{doctor.materno}}</option>
+				{%endfor%}
+				</select>
+			</td>
+			<td>
+				Fecha:<input type="text" size="10" value="{{hoy}}" class="keys validable" id="fechatabla"
+				onchange="RefrescoCitas()"></input>
+			</td>
+			</tr>			
+		</table>
+		<table id="citas" valign="middle"  class="borde">
+			<tr>
+				<th class="hora">
+					Hora:
+				</th>
+				<th>
+					Paciente:
+				</th>
+			</tr>			
+			{% for hora in horarios %}
+			<tr  class="datos">
+				<td class="hora" valign="middle" style="text-align:center;width:100px;" value="{{hora.hora}}">{{hora.hora}}
+				</td>				
+				
+				<td  style="text-align:center" valign="middle" rowspan={{hora.renglones}} >{{hora.paciente}}&nbsp;
+				</td>
+				
+				{%if hora.paciente%}
+					<td>
+						<a href="#" title="Borrar cita" onClick='BorrarCita(this);' id="{{hora.hora}}"><img src="../media/imgs/no.png" alt="Borrar cita"></a>
+					</td>			
+				{%endif%}
+			</tr>			
+			{% endfor %}			
+		</table>		
+
+
+<button alt="añade una nueva cita a su calendario" onclick="MuestroDialogo()">Nueva Cita</button> &nbsp;&nbsp;
+<!--button alt="Modifica la hora de una cita de su calendario" onclick="MuestroDialogo()">Mover Cita</button> &nbsp;&nbsp;
+<button alt="Cancela una cita de su calendario" onclick="MuestroDialogo()">Cancelar Cita</button-->
+</div>
+<div id="dialog" title="Nuevas Citas">
+<table  class="tabla borde" >
+	<tr class="borde">
+		<td class="tituloTabla borde">Doctor: </td>
+		<td colspan=7 class="borde">
+			<select id="dr" style="width:540px">
+				{%if doctores%}
+				{%for doctor in doctores%}
+					<option value="{{doctor.usuario.usuario}}" >Dr. {{doctor.nombre}} {{doctor.paterno}} {{doctor.materno}}</option>
+				{%endfor%}
+				{%else%}
+					<option >No puede solicitar una cita, pongase en contacto con el Dr.</option>
+				{%endif%}
+				
+			</select>
+		</td>
+	</tr>
+	<tr class="borde">
+		<td class="tituloTabla borde">Nombre</td><td class="borde"><input id="nombre" onclick="LimpioMensaje()" class="validable limpiar"></input></td>
+		<td class="tituloTabla borde">Ap Paterno</td><td class="borde"><input id="paterno" onclick="LimpioMensaje()" class="validable limpiar"></input></td>
+		<td class="tituloTabla borde">Ap Materno</td><td class="borde"><input id="materno" onclick="LimpioMensaje()" class="validable limpiar"></input></td>			
+	</tr>
+	<tr class="borde">
+		<td colspan=8 class="borde">
+		  <div id="nvo" style="text-align:right">
+			<input type="checkbox" value="pacientenuevo" id="pacientenuevo" onclick="DisableBuscar()">Paciente Nuevo</input>
+		   </div>
+		</td>
+	</tr>
+</table><br>
+    <div align="right"><button class="boton" onclick="buscoNombre()" id="Buscar">Buscar</button></div>
+	<div id="captura">
+	<br>
+	Fecha de cita:<input type="text" size="10" value="{{hoy}}" class="keys validable" id="fechacita"></input>
+	Hora Inicial:
+	<select id="inicio" onChange="cambioFin()">
+		{% for hora in horarios %}
+			<option id="inicio{{hora.hora}}" value="{{hora.hora}}">{{hora.hora}}</option>
+		{%endfor%}
+	</select>Hora Final:
+	<select id="fin" onchange="ValidoFin()">
+		{% for hora in horarios %}
+			<option id="fin{{hora.hora}}" value="{{hora.hora}}">{{hora.hora}}</option>
+		{%endfor%}
+	</select>
+	{%if doctores%}
+	 <div align="right"><button class="boton" onclick="GrabarCita($('#pacientenuevo').attr('checked'))">Grabar</button></div>
+	{%endif%}
+	<div id="errorCaptura"></div><br>
+	</div>
+</div>
+
+<div id="dialogoNombre" title="Nombres de la busqueda">
+	
+	<SELECT id="Nombres" NAME="Nombres" class="tabla" SIZE=10>
+
+	</SELECT>
+    <div align="right"><button class="botonWide" onclick="Seleccionar('nombre','paterno','materno')">Seleccionar</button></div>
+
+</div>
+  <script type="text/javascript" src="media/js/jquery-1.3.2.js"></script>
+  <script type="text/javascript" src="media/js/ui.core.js"></script>
+  <script type="text/javascript" src="media/js/ui.draggable.js"></script>
+  <script type="text/javascript" src="media/js/ui.resizable.js"></script>
+  <script type="text/javascript" src="media/js/ui.dialog.js"></script>
+  <script type="text/javascript" src="media/js/ui.datepicker.js"></script>
+  <script type="text/javascript" src="media/js/dialogonombre.js"></script>  
+  <script type="text/javascript" src="media/js/citas.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function(){			
+		      Dialogo();			
+		      Calendario();
+		      DialogoNombre();
+		      $("#fechacita").attr("value","{{hoy}}")
+		      $("#dialog").bind('dialogclose',function(evt,ui){				
+				RefrescoCitas();
+		      });
+		      
+	});
+	
+	function DisableBuscar()
+	{
+		if($("#pacientenuevo").attr('checked'))
+		{
+			$("#Buscar").hide("fast");
+		}
+		else
+		{
+			$("#Buscar").show("fast");
+		}
+
+	}
+	
+	function RefrescoCitas()
+	{
+		var doctor=$("#dr :selected").attr("value");
+		var fecha=$("#fechatabla").attr("value");
+		ajax={
+			type: "get",
+			async:true,
+			dataType:"json",
+			url:"/obtengocitas/",
+			data:"dr="+doctor+"&fecha="+fecha,			
+			error: function ()
+					{
+						alert("Ocurrio un error con la lectura de los datos de la Cita");
+						$("#buscando").html("");
+					},            
+			success:RefrescoTabla
+		};       		
+		$.ajax(ajax);//llamo la funcion con JQUERY  
+	}
+	
+	function RefrescoTabla(datos){
+		$("#citas .datos").remove()
+		datos=eval(datos);		
+		for (var x=0;x<datos.length;x++)
+		{
+			renglon="<tr class='datos'><td class='hora' valign='middle' style='text-align:center'"+ 
+				"value='"+datos[x].hora+"'> "+ datos[x].hora+"</td>"+
+				"<td  style='text-align:center' valign='middle' rowspan="+datos[x].renglones+
+				">"+datos[x].paciente+"&nbsp;</td>"
+			if (datos[x].paciente){
+				renglon=renglon+"<td><a href='#' title='Borrar cita'  onClick='BorrarCita(this)' id='"+datos[x].hora+"'><img src='../media/imgs/no.png' alt='Borrar cita'></a></td>";
+			}
+			renglon=renglon+"</tr>";
+			$("#citas").append(renglon);			
+		}
+	}
+	
+	function BorrarCita(id){
+		
+		var mensaje="\u00bfDesea borrar la cita que inicia a las "+id.id+"?";
+		if (confirm(mensaje)) { 
+			BorroCita(id.id);
+		}
+	}
+	
+	function BorroCita(hora)
+	{
+		var doctor=$("#dr :selected").attr("value");
+		var fecha=$("#fechatabla").attr("value");
+		ajax={
+			type: "post",
+			async:true,
+			dataType:"json",
+			url:"/borrocita",
+			data:"dr="+doctor+"&hora="+hora+"&fecha="+fecha,			
+			error: function ()
+					{
+						alert("Ocurrio un error con la eliminacion de la Cita");
+						$("#buscando").html("");
+					},            
+			success:RefrescoTabla
+		};       		
+		$.ajax(ajax);//llamo la funcion con JQUERY  
+		
+		
+	}
+	
+	function BorroRenglon(hora){
+		window.location.reload();
+	}
+  </script>
+{%endblock %}

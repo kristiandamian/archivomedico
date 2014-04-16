@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{%block datos %}
+<head>	
+
+    <link type="text/css" href="media/cupertino/ui.all.css" rel="stylesheet" />
+
+</head>
+<style type="text/css">
+	.ui-dialog-titlebar-close { display: none; } 
+	#errorLogin { color:rgb(209,22,60); }
+</style>
+
+<div id="dialog" title="Login">
+	Usuario :
+	<input id="user" onfocus="LimpioMensaje()"></input>
+	<br>
+	<br>	
+	Password:
+	<input type="password" id="password"  onfocus="LimpioMensaje()"></input>	
+	<div id="errorLogin">El usuario o password no existen o son incorrectos</div>
+</div>
+
+  <script type="text/javascript" src="media/js/jquery-1.3.2.js"></script>
+  <script type="text/javascript" src="media/js/ui.core.js"></script>
+  <script type="text/javascript" src="media/js/ui.draggable.js"></script>
+  <script type="text/javascript" src="media/js/ui.resizable.js"></script>
+  <script type="text/javascript" src="media/js/ui.dialog.js"></script>
+	<script type="text/javascript">
+  $(document).ready(function(){			
+		Dialogo();	
+	$("#errorLogin").fadeOut("fast");
+  });
+  function LimpioMensaje()
+  {
+	$("#errorLogin").fadeOut("slow");
+  }
+  	function Dialogo()
+	{
+	    $("#dialog").dialog( {width: 650, 
+			height: 235 , modal:true,
+			/*show: 'slide',*/ hide: 'slide',
+			resizable: false, autoOpen: true, 			
+			closeOnEscape:false,draggable:false,
+			buttons:{ "Aceptar": function() { 							
+					if($("#user").attr("value").length>0 && $("#password").attr("value").length>0) 
+					{			
+						ValidoUsuario();
+						//$(this).dialog('destroy'); 
+					}
+				}}
+			}		
+		);
+	}
+	
+	function ValidoUsuario()
+	{
+		var usuario=$("#user").attr("value");
+		var password=$("#password").attr("value");
+        ajax={
+            type: "POST",
+            async:true,
+            dataType:"json",
+            url:"/validoPassword",
+            data:"usuario="+usuario+"&password="+password,
+            error: function ()
+                    {
+                        alert("Ocurrio un error con la validacion de la cuenta");						
+                    },            
+            success:ReciboDatos
+        };       		
+        $.ajax(ajax);//llamo la funcion con JQUERY 
+	}
+	
+	function ReciboDatos(datos)
+	{
+		for (obj in datos)
+		{	
+			if(datos[obj].user==1)
+			{
+				$("#dialog").dialog('destroy'); 
+			}
+			else
+			{
+				$("#errorLogin").fadeIn("slow");
+			}
+		}
+	}
+</script>
+{%endblock %}

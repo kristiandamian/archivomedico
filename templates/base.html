@@ -1,0 +1,82 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+	<head>	
+		<title>Archivo-Medico.com</title>
+	<link rel="shortcut icon" href="../media/imgs/favicon.ico">
+	<link href="../media/css/base.css" rel="stylesheet" type="text/css" /> 
+	<LINK HREF="../media/css/style.css" TYPE="text/css" REL="stylesheet"/>
+	<meta name="Keywords" content="Archivo,medico,caso,clinico,sistema,recetas,citas" >
+	<meta name="Description" content="Sistema de integral de gestion de informacion medica, siempre disponible desde cualquier computadora" >
+	<meta name="Robots" content="all" >
+	</head>	
+	<BODY>
+	
+	<!--script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10912704-1");
+pageTracker._trackPageview();
+} catch(err) {}</script-->
+	
+			<div id="menu">
+				<!--MENU-->		
+			<ul class="menu">  
+			  <li><a href="#"><span>Acerca de</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr.appspot.com/contacto"><span>Contacto</span></a></li>
+			  <li><a href="../" class="active"><span>Login</span></a></li>
+			  <li><a href="http://archivo-medico-mainhdr.appspot.com" ><span>Inicio</span></a></li>
+			</ul>	
+			</div>
+		<div id="body">
+		<div id="principal">
+			<img src="../media/imgs/logo.png" id="logo">
+			</img>
+	
+			
+			<ul class="glossymenu" id="verticalmenu" >
+			  <li><a href="#" ><span>Catalogos</span></a>
+					<ul>
+						<li><a href="../datosdr"><span> Datos personales</span></a></li>
+						<li><a href="../datospaciente"> <span>Datos de pacientes</span></a></li>
+						<li><a href="../datossecretaria"> <span>Datos de Secretaria</span></a></li>
+					</ul>
+			  </li>			  
+			  
+			  <li><a href="#"><span>Citas</span></a>
+					<ul>
+						<li><a href="../citas"><span>Ver mis citas </span></a></li>
+						<li><a href="#"> <span>Solicitar cita</span></a></li>
+					</ul>			  
+			  </li>
+			  <li><a href="../consulta"><span>Consulta</span></a></li>
+			  <li><a href="../consulta"><span>Paciente</span></a>
+					<ul>
+						<li><a href="../diagnosticos"><span>Ver diagnosticos</span></a></li>
+						<li><a href="../verestudios"><span>Ver estudios</span></a></li>
+					<li><a href="../registrarestudios"><span>Registrar estudios</span></a></li>
+					</ul>
+			  </li>
+		    <li><a href="#"><span>Usuario</span></a>
+  					<ul>
+						<li><a href="#"><span>Cambiar Password</span></a></li>
+					</ul>
+			  </li>			  			  
+			  <li><a href="../logout"><span>Cerrar Sesi&oacute;n</span></a></li>
+			</ul>
+			<div id="datos">
+			{% block datos %}{% endblock %}
+			</div>
+		</div><!--FIN PRINCIPAL-->	
+		</div>
+	<!--Para redondear todo el principal-->
+	
+	<script type="text/javascript" src="../media/js/shadedborder.js"> </script>	
+	<script language="javascript" type="text/javascript"> 
+		var myBorder = RUZEE.ShadedBorder.create({ corner:8, shadow:18,border:1 });
+		myBorder.render('body');
+    </script>
+	<script type="text/javascript" src="../media/js/cssverticalmenu.js"></script>	
+	</BODY></html>

@@ -1,0 +1,225 @@
+{%extends "base.html"%}
+{%block datos%}
+
+ <link type="text/css" href="../media/cupertino/ui.all.css" rel="stylesheet" />
+ <link type="text/css" href="../media/css/finalizarpago.css" rel="stylesheet" />
+<div id="texto">
+<br><br><br><br><br><br>
+Su subscripci&oacute;n ha sido autorizada. Ahora puede crear su usuario y password o renovar su acceso si ya contaba con una cuenta.
+<br><br>
+<div id="tabs"> 
+ <ul>
+        <li><a href="#fragment-1"><span>Nueva subscripci&oacute;n</span></a></li>
+        <li><a href="#fragment-2"><span>Renovar subscripci&oacute;n</span></a></li>
+    </ul>
+    <div id="fragment-1" >
+		
+		<table>
+			<tr>				
+				<td>Usuario:</td>				
+				<td><input id="newuser" onchange="BuscarUsuario()"></input></td>
+				<td><div id="buscando"></div></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input id="newpassword" type="password" onchange="ValidoLongitud('newpassword','validalongitudPassword');" onfocus="ValidoLongitud('newuser','buscando');"></input></td>
+				<td><div id="validalongitudPassword"></div></td>
+			</tr>
+			<tr>
+				<td>Repita Password:</td>
+				<td><input id="newpassword2" type="password" onchange="ValidoPassword();" onfocus="ValidoLongitud('newpassword','validalongitudPassword');"></input></td>
+				<td><div id="validaPassword"></div></td>
+			</tr>
+			<tr>				
+				<td colspan=2><div align="right">
+					<Button onclick="AltaUsuario();">Aceptar</button>
+				</td>				
+			</tr>
+		</table>
+    </div>
+    <div id="fragment-2">
+		<table>
+			<tr>				
+				<td>Usuario:</td>				
+				<td><input id="user" ></input></td>				
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input id="password" type="password""></input></td>
+			</tr>
+			<tr>				
+				<td colspan=2><div align="right">
+					<input type="submit" onclick="RenovarSubscripcion();" value="Aceptar"></input></div>
+				</td>				
+			</tr>			
+		</table>
+    </div>   
+</div>
+</div>
+<script type="text/javascript" src="../media/js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="../media/js/ui.core.js"></script>
+<script type="text/javascript" src="../media/js/ui.tabs.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+
+	$("a").removeClass("active");
+	$("#subscribirse").addClass("active"); 
+	$("#tabs").tabs();
+});
+
+function BuscarUsuario()
+{
+	$("#buscando").html("<img src='../media/imgs/searching.gif'></img> Validando usuario");
+	BusquedaAjaxUsuario();
+}
+function ValidoLongitud(Campo,div)
+{
+	var bRetorno=false;
+	pass=$("#"+Campo).attr("value");
+	if(pass.length<=1)
+	{
+		$("#"+Campo).addClass("error");
+		$("#"+div).html("<img src='../media/imgs/no.png'></img> El campo es obligatorio");
+	}
+	else
+	{
+		
+		if( $("#"+div).text()!=" Usuario no disponible"  &&
+			$("#"+div).text()!=" Usuario disponible")
+		{
+			$("#"+Campo).removeClass("error");		
+			$("#"+div).html("");			
+		}
+		bRetorno=true;
+	}
+	return bRetorno;
+}
+function ValidoPassword()
+{
+	var bRetorno=false;
+	if(ValidoLongitud('newpassword','validalongitudPassword'))
+	{
+		if($("#newpassword").attr("value")==$("#newpassword2").attr("value"))
+		{
+			$("#newpassword").removeClass("error");
+			$("#newpassword2").removeClass("error");
+			$("#validaPassword").html("");
+			bRetorno=true;
+		}
+		else
+		{
+			$("#newpassword").addClass("error");
+			$("#newpassword2").addClass("error");
+			$("#validaPassword").html("<img src='../media/imgs/no.png'></img> Los password no coinciden");
+		}
+	}
+	return bRetorno;
+}
+function BusquedaAjaxUsuario()
+ {
+        var Dato=$("#newuser").attr("value");
+		if(ValidoLongitud('newuser','buscando'))
+		{
+			ajax={
+				type: "POST",
+				async:true,
+				dataType:"json",
+				url:"/busquedausuario",
+				data:"usuario="+Dato,
+				error: function ()
+						{
+							alert("Ocurrio un error con la consulta de usuario");
+							$("#buscando").html("");
+						},            
+				success:ReciboDatos
+			};       		
+			$.ajax(ajax);//llamo la funcion con JQUERY   
+		}		
+ }
+ 
+function ReciboDatos(datos)
+{
+    for (obj in datos)
+	{
+		if(datos[obj].user==0)
+		{
+			UsuarioCorrecto();
+		}
+		else
+		{
+			UsuarioInorrecto();
+		}
+	}
+}
+function UsuarioCorrecto()
+{
+	$("#buscando").html("<img src='../media/imgs/ok.png'></img> Usuario disponible");
+	$("#newuser").removeClass("error");
+}
+function UsuarioInorrecto()
+{
+	$("#buscando").html("<img src='../media/imgs/no.png'></img> Usuario no disponible");
+	$("#newuser").addClass("error");	
+}
+function AltaUsuario()
+{
+	if(ValidoPassword())
+	{
+		var usuario=$("#newuser").attr("value");
+		var password=$("#newpassword").attr("value");
+        ajax={
+            type: "POST",
+            async:true,
+            //dataType:"json",
+            url:"/altausuario",
+            data:"usuario="+usuario+"&password="+password,
+            error: function ()
+                    {
+                        alert("Ocurrio un error con el alta de usuario");
+						$("#buscando").html("");
+                    },            
+            success:function()
+					{
+						alert("exito");
+					}
+			
+        };       		
+        $.ajax(ajax);//llamo la funcion con JQUERY 
+	}
+}
+function RenovarSubscripcion()
+{
+		var usuario=$("#user").attr("value");
+		var password=$("#password").attr("value");
+        ajax={
+            type: "POST",
+            async:true,
+            dataType:"json",
+            url:"/renovarsubscripcion",
+            data:"usuario="+usuario+"&password="+password,
+            error: function ()
+                    {
+                        alert("Ocurrio un error con la renovacion de la cuenta");
+						$("#buscando").html("");
+                    },            
+            success:ReciboDatosRenovacion			
+        };       		
+        $.ajax(ajax);//llamo la funcion con JQUERY 
+}
+function ReciboDatosRenovacion(datos)
+{
+    for (obj in datos)
+	{
+		if(datos[obj].user==1)
+		{
+			alert("exito");
+		}
+		else
+		{
+			alert("No existe usuario");
+		}
+	}
+}
+ </script>
+
+{%endblock%}

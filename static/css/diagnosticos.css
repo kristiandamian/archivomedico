@@ -1,0 +1,46 @@
+#Nombres{
+	font-size:medium;
+}
+#seleccionar {
+	font-size: medium;
+}
+#forma{
+	top:100px;
+	left:350px;
+        width:540px;
+        font-size: smaller;
+        text-align:right;
+}
+input{
+    width: 125px;
+}
+hr{    
+    background-color:#E3F0F8;
+    height:2px;
+}
+table
+{
+	background-color:rgb(255, 250, 250);
+	width:500px;
+}
+table, td, tr{
+border:1px solid;
+border-color:#BDBDBD;
+}
+.tabladiag{
+    width:540px;
+}
+.fecha{
+    width:100px;
+    text-align:center;
+
+}
+#label{
+	font-size:medium;
+	text-align:center;
+}
+.borde
+{
+  border:1px solid;
+ border-color:#FFFDFD;
+}
