@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -107.44131585954042,
+              24.80182495021767
+            ],
+            [
+              -107.43361255454303,
+              24.80182495021767
+            ],
+            [
+              -107.43361255454303,
+              24.791345071112183
+            ],
+            [
+              -107.44131585954042,
+              24.791345071112183
+            ],
+            [
+              -107.44131585954042,
+              24.80182495021767
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "The Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.437779,
+          24.798064
+        ]
+      },
+      "properties": {
+        "name": "The point inside the polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.39355,
+          24.792837
+        ]
+      },
+      "properties": {
+        "name": "The point offside the polygon"
+      }
+    }
+  ]
+}
